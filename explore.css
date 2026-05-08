@@ -1,0 +1,417 @@
+/* ═══════════════════════════════════════════════════
+   EXPLORE PAGE — styles matching updated Paper layout
+   Background: #B8D4E8 (sky blue)
+   Accent: #D84040 (red)
+   Font: MD Nichrome
+═══════════════════════════════════════════════════ */
+
+/* ── Page base ── */
+.explore-page {
+    background-color: #B8D4E8;
+}
+
+.explore-page #bg-video {
+    display: none;
+}
+
+.nav-item--active {
+    opacity: 0.55;
+}
+
+/* ═══════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════ */
+.ex-hero {
+    padding-top: 500px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top row: title left, subnav top-right */
+.ex-hero__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.ex-hero__title {
+    font-family: 'MD Nichrome', sans-serif;
+    font-size: clamp(100px, 14vw, 220px);
+    font-weight: 700;
+    color: #D84040;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.ex-subnav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    padding-top: 8px;
+}
+
+.ex-subnav a {
+    font-family: 'MD Nichrome', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #D84040;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+}
+
+.ex-subnav a:hover {
+    opacity: 0.55;
+}
+
+/* Hero image — wide, below the title */
+.ex-hero__img-wrap {
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.ex-hero__img {
+    width: 100%;
+    height: auto;
+    /* show full image, no cropping */
+    display: block;
+    object-fit: unset;
+}
+
+/* ═══════════════════════════════════════════════════
+   JOURNEY SECTION
+═══════════════════════════════════════════════════ */
+.ex-journey {
+    padding: 200px 60px;
+}
+
+.ex-journey__heading {
+    font-family: 'MD Nichrome', sans-serif;
+    font-size: clamp(32px, 4.5vw, 64px);
+    font-weight: 700;
+    color: #D84040;
+    line-height: 1.15;
+    margin-bottom: 56px;
+    max-width: 600px;
+}
+
+/* Process grid — 2 cols, left-anchored (not full-bleed) */
+.ex-process-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 24px;
+    max-width: 900px;
+    /* matches Paper: grid sits left ~45% of width */
+    margin-bottom: 48px;
+}
+
+.ex-process-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ex-process-card--wide {
+    grid-column: 1 / -1;
+}
+
+.ex-process-card__img {
+    border-radius: 6px;
+    overflow: hidden;
+    background-color: #c5d8e8;
+}
+
+.ex-process-card__img img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s ease;
+}
+
+.ex-process-card--wide .ex-process-card__img img {
+    height: 420px;
+}
+
+.ex-process-card__img:hover img {
+    transform: scale(1.03);
+}
+
+.ex-process-card__label {
+    font-family: 'MD Nichrome', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #D84040;
+    text-align: center;
+}
+
+.ex-ext-link {
+    display: inline-block;
+    font-family: 'MD Nichrome', sans-serif;
+    font-size: 14px;
+    color: #D84040;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.ex-ext-link:hover {
+    opacity: 0.55;
+}
+
+/* ═══════════════════════════════════════════════════
+   LOOM TEXT SECTION
+═══════════════════════════════════════════════════ */
+.ex-loom {
+    padding: 60px 60px;
+}
+
+.ex-loom__cols {
+    display: flex;
+    gap: 60px;
+    max-width: 960px;
+}
+
+.ex-loom__text {
+    font-family: 'MD Nichrome', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #1a1a1a;
+    flex: 1;
+}
+
+/* ═══════════════════════════════════════════════════
+   MOTIFS SECTION
+═══════════════════════════════════════════════════ */
+.ex-motifs {
+    padding: 200px 60px;
+}
+
+/* Header: huge "Motifs:" left, description text right */
+.ex-motifs__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 60px;
+    margin-bottom: 80px;
+}
+
+.ex-motifs__title {
+    font-family: 'MD Nichrome', sans-serif;
+    font-size: clamp(80px, 11vw, 180px);
+    font-weight: 700;
+    color: #D84040;
+    line-height: 1;
+    margin: 0;
+    flex: 0 0 auto;
+}
+
+.ex-motifs__intro {
+    font-family: 'MD Nichrome', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #1a1a1a;
+    max-width: 520px;
+    padding-top: 12px;
+}
+
+/* ── Generic motif row ── */
+.ex-motif-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 60px 0;
+    border-top: 1px solid rgba(26, 26, 26, 0.12);
+    gap: 24px;
+}
+
+.ex-motif-row__name {
+    font-family: 'MD Nichrome', sans-serif;
+    font-size: clamp(48px, 7vw, 110px);
+    font-weight: 700;
+    color: #D84040;
+    line-height: 1;
+    margin: 0;
+    white-space: nowrap;
+    flex: 0 0 auto;
+    align-self: flex-end;
+}
+
+.ex-motif-row__desc {
+    font-family: 'MD Nichrome', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+    max-width: 420px;
+}
+
+.ex-motif-row__img img {
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+    transition: transform 0.5s ease;
+}
+
+.ex-motif-row__img:hover img {
+    transform: scale(1.03);
+}
+
+/* ── Boteh: content block pinned LEFT ── */
+.ex-motif-row--boteh .ex-motif-row__left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.ex-motif-row--boteh .ex-motif-row__img img {
+    width: clamp(200px, 26vw, 430px);
+    height: clamp(160px, 22vw, 360px);
+}
+
+/* ── Chinar: content block pinned CENTRE ── */
+.ex-motif-row--chinar {
+    position: relative;
+}
+
+.ex-motif-row--chinar .ex-motif-row__mid {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ex-motif-row--chinar .ex-motif-row__img img {
+    width: clamp(200px, 26vw, 430px);
+    height: clamp(160px, 22vw, 360px);
+}
+
+/* ── Bootis: content block pinned RIGHT-ish (before the name) ── */
+.ex-motif-row--bootis .ex-motif-row__right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: auto;
+}
+
+.ex-motif-row--bootis .ex-motif-row__img img {
+    width: clamp(200px, 26vw, 430px);
+    height: clamp(160px, 22vw, 360px);
+}
+
+/* ── Tag row ── */
+.ex-motif-tags {
+    display: flex;
+    gap: 48px;
+    padding-top: 60px;
+    border-top: 1px solid rgba(26, 26, 26, 0.12);
+    flex-wrap: wrap;
+}
+
+.ex-motif-tags span {
+    font-family: 'MD Nichrome', sans-serif;
+    font-size: clamp(16px, 2vw, 26px);
+    font-weight: 400;
+    color: #1a1a1a;
+    cursor: default;
+    transition: color 0.2s ease;
+}
+
+.ex-motif-tags span:hover {
+    color: #D84040;
+}
+
+/* ═══════════════════════════════════════════════════
+   CLOSING SCARF
+═══════════════════════════════════════════════════ */
+.ex-closing {
+    display: flex;
+    justify-content: flex-end;
+    padding: 200px 60px;
+    background-color: #B8D4E8;
+}
+
+.ex-closing__img {
+    width: clamp(260px, 32vw, 520px);
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════ */
+@media (max-width: 960px) {
+
+    .ex-hero,
+    .ex-journey,
+    .ex-loom,
+    .ex-motifs {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .ex-hero__top {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .ex-subnav {
+        align-items: flex-start;
+    }
+
+    .ex-process-grid {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+
+    .ex-process-card--wide {
+        grid-column: auto;
+    }
+
+    .ex-loom__cols {
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    .ex-motifs__header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .ex-motif-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .ex-motif-row__name {
+        align-self: flex-end;
+    }
+
+    .ex-motif-row--chinar .ex-motif-row__mid,
+    .ex-motif-row--bootis .ex-motif-row__right {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .ex-motif-tags {
+        gap: 20px;
+    }
+
+    .ex-closing {
+        justify-content: center;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
