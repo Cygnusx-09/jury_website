@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pash Studios — Pashmina Shawls</title>
+    <meta name="description" content="Pash Studios — Premium Pashmina Shawls. Explore handcrafted cashmere.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Erica+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="background_vid.mp4" type="video/mp4">
+    </video>
+
+
+    <!-- Navigation -->
+    <nav id="main-nav">
+        <div class="nav-left">
+            <a href="/" class="logo-link" id="logo-link">
+                <img src="logo pash.png" alt="Pash Studios Logo" class="logo-img">
+                <span class="logo-text">Pash Studios</span>
+            </a>
+        </div>
+        <div class="nav-right">
+            <a href="#" class="nav-item" id="nav-community">
+                <span>Pash Community</span>
+                <img src="commune.svg" alt="" class="nav-icon">
+            </a>
+            <a href="#" class="nav-item" id="nav-shop">
+                <span>Shop</span>
+                <img src="shop.svg" alt="" class="nav-icon">
+            </a>
+            <a href="#" class="nav-item" id="nav-explore">
+                <span>Explore Pash</span>
+                <img src="explore.svg" alt="" class="nav-icon">
+            </a>
+            <a href="#" class="nav-item" id="nav-about">
+                <span>About Pash</span>
+                <img src="phone.svg" alt="" class="nav-icon">
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Physics World -->
+    <section id="hero">
+
+        <!-- "Shawls" — positioned by JS just above Pashmina -->
+        <div class="shawls-text" id="shawls-text">Shawls</div>
+
+        <!-- Each letter: physics-driven DOM body -->
+        <div class="letter-body" id="letter-P" data-char="P"></div>
+        <div class="letter-body" id="letter-a" data-char="a"></div>
+        <div class="letter-body" id="letter-s" data-char="s"></div>
+        <div class="letter-body" id="letter-h" data-char="h"></div>
+        <div class="letter-body" id="letter-m" data-char="m"></div>
+        <div class="letter-body" id="letter-i" data-char="i"></div>
+        <div class="letter-body" id="letter-n" data-char="n"></div>
+        <div class="letter-body" id="letter-a2" data-char="a"></div>
+
+        <!-- Stickers: purely absolute CSS, no physics -->
+        <img src="goat.png" class="sticker" id="sticker-goat" alt="Pashmina Goat">
+        <img src="scarf.png" class="sticker" id="sticker-scarf" alt="Pashmina Scarf">
+        <img src="star flower.png" class="sticker" id="sticker-flower" alt="Flower">
+        <img src="scarf 2.png" class="sticker" id="sticker-scarf2" alt="Pashmina Scarf 2">
+
+        <!-- Invisible physics canvas (mouse picking only) -->
+        <canvas id="physics-canvas"></canvas>
+
+    </section>
+    <section id="info-section">
+        <div class="contentwrapper">
+            <div class="himalaya">
+                <h4>In the high Himalayas, Pashmina begins as an ultra-fine inner coat on Changthangi goats living at
+                    altitudes around Ladakh, evolved to survive winters that drop well below freezing. In the valley of
+                    Kashmir, that fibre is cleaned, hand-spun on simple wheels and woven on wooden looms into shawls
+                    that have wrapped royalty and travellers in “soft gold” for centuries. Pashmina is a small window
+                    into this craft, focusing on the people, processes and quiet labour behind each piece rather than
+                    just the product.</h4>
+                <div class="btn">
+                    explore the craft
+                </div>
+            </div>
+        </div>
+        <div class="pashminawrap">
+            <h2>What is Pashmina?</h2>
+            <div class="secondcont">
+                <h4>Pashmina comes from the word “pashm” – a term with Persian and Urdu roots that refers to the fine
+                    under-fleece of mountain goats, not general wool. In Kashmir, that fibre is transformed into
+                    extremely light, warm shawls that became symbols of status in royal courts and among European elites
+                    from at least the 15th century onwards.</h4>
+                <h4>Unlike regular wool or commercial cashmere, Kashmiri Pashmina uses very fine fibres (around 12–16
+                    microns) that are hand-spun and hand-woven, which is why a pure piece feels weightless yet
+                    incredibly warm. Because this quality is tied closely to place and technique, “Kashmir Pashmina” is
+                    protected with a Geographical Indication (GI) tag in India.</h4>
+            </div>
+            <div class="image-row">
+                <img src="image2.png" alt="Pashmina process and history">
+            </div>
+        </div>
+    </section>
+    <section class="third-section">
+        <img src="image 3.png" alt="">
+        <div class="cont">
+            <h2>which is why a pure piece feels weightless yet incredibly warm. Because this quality is tied closely to
+                place</h2>
+        </div>
+
+    </section>
+    <section class="section-image-5">
+        <div class="marquee-container">
+            <div class="marquee-track">
+                <img src="image 5.png" alt="" class="marquee-img">
+                <img src="image 5.png" alt="" class="marquee-img">
+                <img src="image 5.png" alt="" class="marquee-img">
+                <img src="image 5.png" alt="" class="marquee-img">
+            </div>
+        </div>
+
+        <!-- Vanilla HTML/CSS Implementation of the Requested Footer -->
+        <footer class="custom-footer">
+            <div class="footer-content">
+                <div class="footer-top">
+                    <span class="footer-brand">Pash Studios</span>
+                    <p class="footer-desc">Crafting authentic, ultra-fine Pashmina shawls. A small window into the
+                        craft, people, and processes of Kashmir.</p>
+                </div>
+
+                <div class="footer-nav">
+                    <a href="#">Community</a>
+                    <a href="#">Shop</a>
+                    <a href="#">Explore Pash</a>
+                    <a href="#">About Pash</a>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>©2026 Pash Studios. All rights reserved.</p>
+                    <a href="#" class="creator-link">Crafted by Sagar & Piyush</a>
+                </div>
+            </div>
+
+            <!-- Large Background Text -->
+            <div class="footer-bg-text">PASH STUDIOS</div>
+
+            <!-- Bottom Line & Shadow -->
+            <div class="footer-line"></div>
+            <div class="footer-shadow"></div>
+        </footer>
+    </section>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
