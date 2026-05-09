@@ -1,8 +1,7 @@
 /**
- * Pash Studios — Matter.js DOM Physics
- * Letters of "Pashmina" are DOM elements driven by Matter.js.
- * Font size fills 100vw. Letters settle at the bottom edge.
- * Stickers: pure CSS, no physics.
+ * Pash Studios — Matter.js & GSAP Implementation
+ * Built from scratch with 72px font size.
+ * Elements start at viewport top and fall to bottom.
  */
 
 (function () {
@@ -11,85 +10,31 @@
         Mouse, MouseConstraint, Events, Query
     } = Matter;
 
+    const heroEl = document.getElementById('hero') || document.body;
     const W = window.innerWidth;
-    const H = window.innerHeight;
+    const H = window.innerHeight; 
+    const FONT_SIZE = 200;
+    const START_Y = -100; // Change this (e.g., H/2) to set the initial height
 
-    const LETTER_IDS = ['letter-P', 'letter-a', 'letter-s', 'letter-h', 'letter-m', 'letter-i', 'letter-n', 'letter-a2'];
-    const LETTER_CHARS = ['P', 'a', 's', 'h', 'm', 'i', 'n', 'a'];
+    // Register GSAP plugins
+    gsap.registerPlugin(ScrollTrigger);
 
-    // ─── Step 1: Wait for Erica One font to load, then compute layout ────────
-    document.fonts.ready.then(init);
-
-    function init() {
-
-        // ── Measure font size so "Pashmina" fills 100% viewport width ─────
-        const probe = document.createElement('div');
-        probe.style.cssText =
-            'position:fixed;top:-9999px;left:0;' +
-            'font-family:"Erica One",serif;font-size:300px;' +
-            'white-space:nowrap;visibility:hidden;pointer-events:none;line-height:1;';
-        probe.textContent = 'Pashmina';
-        document.body.appendChild(probe);
-
-        const naturalWidth = probe.offsetWidth;
-        const naturalHeight = probe.offsetHeight;
-        // Scale so word = 100vw
-        const fontSize = Math.floor(300 * (W / naturalWidth));
-
-        document.body.removeChild(probe);
-
-        // ── Set font-size and text on each letter div ─────────────────────
-        LETTER_IDS.forEach((id, i) => {
-            const el = document.getElementById(id);
-            el.textContent = LETTER_CHARS[i];
-            el.style.fontSize = fontSize + 'px';
-            el.style.lineHeight = '1';
-            // Park off-screen while we measure
-            el.style.left = '-9999px';
-            el.style.top = '-9999px';
-            el.style.transform = 'none';
+    // Initial setup: Wait for all assets (images and fonts) to be fully loaded
+    window.addEventListener('load', () => {
+        document.fonts.ready.then(() => {
+            setupPhysics();
         });
+    });
 
-        // ── Need one layout frame for measurements ────────────────────────
-        requestAnimationFrame(() => requestAnimationFrame(() => buildPhysics(fontSize, naturalHeight)));
-    }
-
-    function buildPhysics(fontSize, approxLetterHeight) {
-
-        // ── Measure each letter's actual rendered size ────────────────────
-        const letterEls = LETTER_IDS.map(id => document.getElementById(id));
-        const widths = letterEls.map(el => el.getBoundingClientRect().width);
-        const heights = letterEls.map(el => el.getBoundingClientRect().height);
-        const letterH = heights[0]; // P reference height
-
-        // ── Compute X centres so letters span viewport width exactly ──────
-        const totalW = widths.reduce((s, w) => s + w, 0);
-        const startX = Math.max(0, (W - totalW) / 2); // centre the word
-
-        const centreXs = [];
-        let cursor = startX;
-        widths.forEach((w) => {
-            centreXs.push(cursor + w / 2);
-            cursor += w;
+    function setupPhysics() {
+        // ── 1. Create Engine & World ─────────────────────────────────────
+        const engine = Engine.create({ 
+            gravity: { x: 0, y: 1.2 },
+            enableSleeping: true // Stop calculating at rest
         });
-
-        // ── Floor at viewport bottom so letters sit right at the edge ──────
-        const floorY = H;
-
-        // ── "Shawls" — just above the letter tops ────────────────────────
-        const lettersTop = floorY - letterH;
-        const shawlsEl = document.getElementById('shawls-text');
-        const shawlsFS = Math.round(fontSize * 0.48);
-        shawlsEl.style.fontSize = shawlsFS + 'px';
-        shawlsEl.style.top = (lettersTop - shawlsFS - 8) + 'px';
-        shawlsEl.style.left = Math.round(W * 0.33) + 'px';
-        shawlsEl.style.transform = 'rotate(-8deg)';
-        shawlsEl.style.visibility = 'visible';
-
-        // ── Matter.js engine ──────────────────────────────────────────────
-        const engine = Engine.create({ gravity: { x: 0, y: 1.2 } });
         const world = engine.world;
 
+        // ── 2. Create Canvas for interaction ─────────────────────────────
         const canvas = document.getElementById('physics-canvas');
         canvas.width = W;
         canvas.height = H;
@@ -102,65 +47,124 @@
                 height: H,
                 wireframes: false,
                 background: 'transparent',
-                pixelRatio: window.devicePixelRatio || 1
+                pixelRatio: 1 // Force 1:1 with CSS pixels to fix offset anchors
             }
         });
 
-        // Walls
-        const WALL = 80;
-        Composite.add(world, [
-            Bodies.rectangle(W / 2, floorY + WALL / 2, W * 3, WALL, { isStatic: true }),
-            Bodies.rectangle(-WALL / 2, H / 2, WALL, H * 3, { isStatic: true }),
-            Bodies.rectangle(W + WALL / 2, H / 2, WALL, H * 3, { isStatic: true }),
-        ]);
+        // ── 3. Walls ─────────────────────────────────────────────────────
+        const WALL_THICKNESS = 500;
+        const ground = Bodies.rectangle(W / 2, H + WALL_THICKNESS / 2, W * 3, WALL_THICKNESS, { isStatic: true });
+        const leftWall = Bodies.rectangle(-WALL_THICKNESS / 2, H / 2, WALL_THICKNESS, H * 3, { isStatic: true });
+        const rightWall = Bodies.rectangle(W + WALL_THICKNESS / 2, H / 2, WALL_THICKNESS, H * 3, { isStatic: true });
+        
+        Composite.add(world, [ground, leftWall, rightWall]);
 
-        // ── Create letter physics bodies ──────────────────────────────────
-        // Stagger spawn heights so they cascade nicely
-        const spawnOffsets = [-60, -120, -80, -150, -100, -130, -90, -160];
-
+        // ── 4. Letters ───────────────────────────────────────────────────
+        const letterEls = Array.from(document.querySelectorAll('.letter-body'));
         const physBodies = [];
-        letterEls.forEach((el, i) => {
-            const bw = widths[i];
-            const bh = heights[i];
-            const cx = centreXs[i];
-            // Spawn above the floor
-            const spawnY = lettersTop + spawnOffsets[i];
 
-            const body = Bodies.rectangle(cx, spawnY, bw * 0.75, bh * 0.80, {
-                restitution: 0.2,
-                friction: 0.55,
-                frictionAir: 0.025,
-                density: 0.004,
-                angle: (Math.random() - 0.5) * 0.15,
-                chamfer: { radius: 6 },
-                label: 'letter'
+        // Pashmina (8 letters) @ 300px, Shawls (6 letters) @ 200px
+        const PASHMINA_SIZE = 300;
+        const SHAWLS_SIZE = 200;
+
+        const pashminaEls = letterEls.slice(0, 8);
+        const shawlsEls = letterEls.slice(8);
+
+        function processRow(elements, fontSize, rowYOffset) {
+            let rowWidth = 0;
+            const data = elements.map(el => {
+                el.style.fontSize = fontSize + 'px';
+                el.style.position = 'absolute';
+                el.style.lineHeight = '1';
+                el.style.display = 'flex';
+                el.style.alignItems = 'center';
+                el.style.justifyContent = 'center';
+                el.style.pointerEvents = 'none';
+                const rect = el.getBoundingClientRect();
+                rowWidth += rect.width * 0.8;
+                return { el, bw: rect.width, bh: rect.height };
             });
+
+            let startX = (W - rowWidth) / 2;
+            data.forEach((item, i) => {
+                const cx = startX + (item.bw / 2);
+                const spawnY = START_Y + rowYOffset + (i * 20); // Add slight stagger within row
+
+                const body = Bodies.rectangle(cx, spawnY, item.bw * 0.8, item.bh * 0.8, {
+                    restitution: 0.3,
+                    friction: 0.5,
+                    frictionAir: 0.02,
+                    density: 0.005,
+                    angle: (Math.random() - 0.5) * 0.2,
+                    chamfer: { radius: 6 },
+                    label: fontSize === PASHMINA_SIZE ? 'pashmina' : 'shawls'
+                });
+
+                body._el = item.el;
+                body._bw = item.bw;
+                body._bh = item.bh;
+                physBodies.push(body);
+                startX += item.bw * 0.8;
+            });
+        }
+
+        // Process Shawls (Top Row) first
+        processRow(shawlsEls, SHAWLS_SIZE, 0);
+        // Process Pashmina (Bottom Row) with a vertical offset
+        processRow(pashminaEls, PASHMINA_SIZE, 350);
+
+        // ── 5. Stickers ──────────────────────────────────────────────────
+
+        // ── 5. Stickers ──────────────────────────────────────────────────
+        const stickerEls = Array.from(document.querySelectorAll('.sticker'));
+        stickerEls.forEach((el) => {
+            el.style.pointerEvents = 'none';
+            const rect = el.getBoundingClientRect();
+            const bw = rect.width;
+            const bh = rect.height;
+            
+            // Start stickers where they are in layout but add them to physics
+            const cx = rect.left + bw / 2;
+            const cy = rect.top + bh / 2;
+
+            const body = Bodies.rectangle(cx, cy, bw * 0.9, bh * 0.9, {
+                restitution: 0.4,
+                friction: 0.3,
+                frictionAir: 0.015,
+                density: 0.002,
+                angle: (Math.random() - 0.5) * 0.1,
+                chamfer: { radius: 10 },
+                label: 'sticker'
+            });
+
+            el.style.bottom = 'auto';
+            el.style.right = 'auto';
+            el.style.margin = '0';
 
             body._el = el;
             body._bw = bw;
             body._bh = bh;
-
             physBodies.push(body);
         });
 
         Composite.add(world, physBodies);
 
-        // ── Mouse constraint ──────────────────────────────────────────────
+        // ── 6. Mouse Interaction ─────────────────────────────────────────
         const mouse = Mouse.create(canvas);
-
-        // Fix: Stop Matter.js from capturing scroll events
         if (mouse.element) {
             mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
             mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
+            mouse.element.removeEventListener("wheel", mouse.mousewheel);
         }
 
         const mc = MouseConstraint.create(engine, {
             mouse,
-            constraint: { stiffness: 0.12, damping: 0.1, render: { visible: false } }
+            constraint: { stiffness: 0.15, damping: 0.1, render: { visible: false } }
         });
         Composite.add(world, mc);
         render.mouse = mouse;
 
+        // Interaction Cursors
         Events.on(mc, 'startdrag', () => { canvas.style.cursor = 'grabbing'; });
         Events.on(mc, 'enddrag', () => { canvas.style.cursor = 'default'; });
         Events.on(mc, 'mousemove', e => {
@@ -168,9 +172,14 @@
             canvas.style.cursor = found.length ? 'grab' : 'default';
         });
 
-        // ── Sync DOM positions to physics bodies each frame ───────────────
-        Events.on(engine, 'afterUpdate', () => {
+        // ── 7. GSAP Sync Loop ────────────────────────────────────────────
+        gsap.ticker.add((time, deltaTime) => {
+            Engine.update(engine, deltaTime);
+
             physBodies.forEach(body => {
+                // Optimization: Skip DOM updates if the body is sleeping (not moving)
+                if (body.isSleeping) return;
+
                 const el = body._el;
                 if (!el) return;
                 const { x, y } = body.position;
@@ -180,32 +189,11 @@
             });
         });
 
+        // Optional: Render wireframes to canvas (hidden by opacity 0 in CSS)
         Render.run(render);
-        Runner.run(Runner.create(), engine);
     }
 
-    // ─── Resize: reload ───────────────────────────────────────────────────────
+    // Resize: reload for layout accuracy
     window.addEventListener('resize', () => location.reload());
 
 })();
-
-// ── Scroll Triggered Marquee Animation ────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-    const marqueeTrack = document.querySelector('.marquee-track');
-    const section5 = document.querySelector('.section-image-5');
-    
-    if (marqueeTrack && section5) {
-        const updateMarquee = () => {
-            const scrollY = window.scrollY;
-            const offset = scrollY * 0.4; // Speed multiplier
-            
-            // Apply the offset. We use a negative value to move left-to-right 
-            // relative to the scroll direction.
-            marqueeTrack.style.transform = `translateX(-${offset}px)`;
-        };
-
-        updateMarquee();
-        window.addEventListener('scroll', updateMarquee);
-        window.addEventListener('resize', updateMarquee);
-    }
-});
