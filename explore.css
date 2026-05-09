@@ -6,8 +6,12 @@
 ═══════════════════════════════════════════════════ */
 
 /* ── Page base ── */
+html,
 .explore-page {
     background-color: #B8D4E8;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .explore-page #bg-video {
@@ -28,6 +32,8 @@
     padding-bottom: 60px;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    /* Prevent zoomed image from leaking out */
 }
 
 /* Top row: title left, subnav top-right */
@@ -46,6 +52,11 @@
     line-height: 1;
     letter-spacing: -0.02em;
     margin: 0;
+}
+
+.ex-hero__title .char {
+    display: inline-block;
+    will-change: transform;
 }
 
 .ex-subnav {
@@ -126,6 +137,8 @@
     border-radius: 6px;
     overflow: hidden;
     background-color: #c5d8e8;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.4s ease;
 }
 
 .ex-process-card__img img {
@@ -133,15 +146,19 @@
     height: 220px;
     object-fit: cover;
     display: block;
-    transition: transform 0.45s ease;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .ex-process-card--wide .ex-process-card__img img {
     height: 420px;
 }
 
+.ex-process-card__img:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
 .ex-process-card__img:hover img {
-    transform: scale(1.03);
+    transform: scale(1.04);
 }
 
 .ex-process-card__label {
@@ -211,6 +228,7 @@
     line-height: 1;
     margin: 0;
     flex: 0 0 auto;
+    will-change: transform;
 }
 
 .ex-motifs__intro {
@@ -259,11 +277,13 @@
     display: block;
     object-fit: cover;
     border-radius: 6px;
-    transition: transform 0.5s ease;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
 }
 
 .ex-motif-row__img:hover img {
-    transform: scale(1.03);
+    transform: scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
 }
 
 /* ── Boteh: content block pinned LEFT ── */
