@@ -193,6 +193,19 @@
         Render.run(render);
     }
 
+    // ─── Scroll Triggered Animations ──────────────────────────────────────────
+    // Marquee movement tied to scroll
+    gsap.to(".marquee-track", {
+        x: "-25%", // Shifting left as we scroll
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".marquee-container",
+            start: "top bottom", // Start when container enters viewport
+            end: "bottom top",   // End when container leaves viewport
+            scrub: 1             // Smoothly follow scroll
+        }
+    });
+
     // Resize: reload for layout accuracy
     window.addEventListener('resize', () => location.reload());
 

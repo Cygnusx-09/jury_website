@@ -340,7 +340,7 @@ body {
 .third-section {
     position: relative;
     background-color: #FFF3EF;
-    padding: 120px 80px;
+    padding: 120px 0 120px 80px; /* Removed right padding */
     display: flex;
     justify-content: flex-end;
     align-items: center;
