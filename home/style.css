@@ -1,7 +1,7 @@
 /* ===== Font Faces ===== */
 @font-face {
     font-family: 'MD Nichrome';
-    src: url('MD-Nichrome-Test/MD Nichrome Test/MDNichromeTest-Regular.otf') format('opentype');
+    src: url('../shared/MD-Nichrome-Test/MD Nichrome Test/MDNichromeTest-Regular.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -9,7 +9,7 @@
 
 @font-face {
     font-family: 'MD Nichrome';
-    src: url('MD-Nichrome-Test/MD Nichrome Test/MDNichromeTest-Bold.otf') format('opentype');
+    src: url('../shared/MD-Nichrome-Test/MD Nichrome Test/MDNichromeTest-Bold.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
     font-display: swap;

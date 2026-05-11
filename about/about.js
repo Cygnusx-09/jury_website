@@ -10,16 +10,16 @@
 (function () {
 
   const IMAGES = [
-    "svg%20path/Bootis.png",
-    "svg%20path/Boteh.png",
-    "svg%20path/Chinar.png",
-    "svg%20path/Dehairing.png",
-    "svg%20path/Sorting.png",
-    "svg%20path/Spinning.png",
-    "svg%20path/Weaving.png",
-    "svg%20path/Harvesting%20and%20Combing.png",
-    "svg%20path/Herding.png",
-    "svg%20path/Final%20Product.png",
+    "assets/svg%20path/Bootis.png",
+    "assets/svg%20path/Boteh.png",
+    "assets/svg%20path/Chinar.png",
+    "assets/svg%20path/Dehairing.png",
+    "assets/svg%20path/Sorting.png",
+    "assets/svg%20path/Spinning.png",
+    "assets/svg%20path/Weaving.png",
+    "assets/svg%20path/Harvesting%20and%20Combing.png",
+    "assets/svg%20path/Herding.png",
+    "assets/svg%20path/Final%20Product.png",
   ];
 
   function randomInt(min, max) {
