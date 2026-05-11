@@ -62,8 +62,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    z-index: 200;
-
+    z-index: 1000;
+    mix-blend-mode: difference;
 }
 
 .nav-left .logo-link {
@@ -71,25 +71,21 @@ body {
     align-items: center;
     gap: 4px;
     text-decoration: none;
-    color: inherit;
+    color: #ffffff;
 }
 
 .logo-img {
     width: 92px;
     height: auto;
     object-fit: contain;
-}
-
-.logo-img {
     margin-bottom: -24px;
 }
 
 .logo-text {
-    font-family: 'MD Nichrome', sans-serif;
     font-size: 28px;
     font-weight: 400;
-    color: #1a1a1a;
     letter-spacing: -0.01em;
+    color: #ffffff;
 }
 
 .nav-right {
@@ -103,15 +99,13 @@ body {
     align-items: center;
     gap: 6px;
     text-decoration: none;
-    color: #1a1a1a;
-    font-family: 'MD Nichrome', sans-serif;
+    color: #ffffff;
     font-size: 18px;
-    font-weight: 400;
     transition: opacity 0.2s ease;
 }
 
 .nav-item:hover {
-    opacity: 0.55;
+    opacity: 0.6;
 }
 
 .nav-icon {

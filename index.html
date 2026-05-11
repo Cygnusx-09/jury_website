@@ -10,9 +10,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Erica+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="transition.css">
 </head>
 
 <body>
+    <div id="transition-overlay"></div>
     <!-- Background Image -->
     <img src="leopard.jpg" alt="Hero Background" id="bg-video">
 
@@ -21,25 +23,25 @@
     <!-- Navigation -->
     <nav id="main-nav">
         <div class="nav-left">
-            <a href="/" class="logo-link" id="logo-link">
+            <a href="index.html" class="logo-link">
                 <img src="logo pash.png" alt="Pash Studios Logo" class="logo-img">
                 <span class="logo-text">Pash Studios</span>
             </a>
         </div>
         <div class="nav-right">
-            <a href="#" class="nav-item" id="nav-community">
+            <a href="#" class="nav-item">
                 <span>Pash Community</span>
                 <img src="commune.svg" alt="" class="nav-icon">
             </a>
-            <a href="#" class="nav-item" id="nav-shop">
+            <a href="#" class="nav-item">
                 <span>Shop</span>
                 <img src="shop.svg" alt="" class="nav-icon">
             </a>
-            <a href="explore.html" class="nav-item" id="nav-explore">
+            <a href="explore.html" class="nav-item">
                 <span>Explore Pash</span>
                 <img src="explore.svg" alt="" class="nav-icon">
             </a>
-            <a href="#" class="nav-item" id="nav-about">
+            <a href="about us/about.html" class="nav-item">
                 <span>About Pash</span>
                 <img src="phone.svg" alt="" class="nav-icon">
             </a>
@@ -139,7 +141,7 @@
                     <a href="#">Community</a>
                     <a href="#">Shop</a>
                     <a href="#">Explore Pash</a>
-                    <a href="#">About Pash</a>
+                    <a href="about us/about.html">About Pash</a>
                 </div>
 
                 <div class="footer-bottom">
@@ -162,6 +164,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
+    <script src="transition.js"></script>
 </body>
 
 </html>
