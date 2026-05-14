@@ -266,7 +266,7 @@ body {
     max-width: 617px;
     height: 100%;
     object-fit: contain;
-    mix-blend-mode: difference;
+    mix-blend-mode: normal;
 }
 
 /* Comprehensive Responsive Adjustments */
