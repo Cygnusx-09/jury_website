@@ -163,7 +163,7 @@ body {
 
 .role-row-2 {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 100px;
     flex-wrap: wrap;
 }
