@@ -316,7 +316,8 @@ body {
         margin-top: 2rem;
     }
 
-    .role-row-1, .role-row-2 {
+    .role-row-1,
+    .role-row-2 {
         gap: 2rem;
     }
 
@@ -332,7 +333,8 @@ body {
         text-align: center;
     }
 
-    .who-makes-section, .what-we-do-section {
+    .who-makes-section,
+    .what-we-do-section {
         gap: 4rem;
         margin-top: 4rem;
     }
