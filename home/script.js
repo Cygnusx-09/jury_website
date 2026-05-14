@@ -12,7 +12,7 @@
 
     const heroEl = document.getElementById('hero') || document.body;
     const W = window.innerWidth;
-    const H = window.innerHeight; 
+    const H = window.innerHeight;
     const FONT_SIZE = 200;
     const START_Y = -100; // Change this (e.g., H/2) to set the initial height
 
@@ -28,7 +28,7 @@
 
     function setupPhysics() {
         // ── 1. Create Engine & World ─────────────────────────────────────
-        const engine = Engine.create({ 
+        const engine = Engine.create({
             gravity: { x: 0, y: 1.2 },
             enableSleeping: true // Stop calculating at rest
         });
@@ -56,7 +56,7 @@
         const ground = Bodies.rectangle(W / 2, H + WALL_THICKNESS / 2, W * 3, WALL_THICKNESS, { isStatic: true });
         const leftWall = Bodies.rectangle(-WALL_THICKNESS / 2, H / 2, WALL_THICKNESS, H * 3, { isStatic: true });
         const rightWall = Bodies.rectangle(W + WALL_THICKNESS / 2, H / 2, WALL_THICKNESS, H * 3, { isStatic: true });
-        
+
         Composite.add(world, [ground, leftWall, rightWall]);
 
         // ── 4. Letters ───────────────────────────────────────────────────
@@ -122,7 +122,7 @@
             const rect = el.getBoundingClientRect();
             const bw = rect.width;
             const bh = rect.height;
-            
+
             // Start stickers where they are in layout but add them to physics
             const cx = rect.left + bw / 2;
             const cy = rect.top + bh / 2;
@@ -208,5 +208,148 @@
 
     // Resize: reload for layout accuracy
     window.addEventListener('resize', () => location.reload());
+
+})();
+
+// ─── Premium Text Reveal Animations (Impeccable) ──────────────────────────────
+// Runs independently of physics — only needs DOM + GSAP + ScrollTrigger
+(function initTextAnimations() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // ── Utility: split an element's text into masked word spans ──────────────
+    // Each word becomes: <span class="tw-mask"><span class="tw-inner">word</span></span>
+    // Spaces are preserved as plain text nodes between the mask spans.
+    function splitWords(el) {
+        const raw = el.innerText.trim();
+        el.innerHTML = raw.split(/\s+/).map(word =>
+            `<span class="tw-mask"><span class="tw-inner">${word}</span></span>`
+        ).join(' ');
+        return Array.from(el.querySelectorAll('.tw-inner'));
+    }
+
+    // Impeccable's signature easing — expo deceleration, no bounce
+    const E = 'expo.out';
+
+    // ── 1. Himalaya paragraph — word-by-word, tight stagger ─────────────────
+    const himalayaH4 = document.querySelector('.himalaya h4');
+    if (himalayaH4) {
+        const words = splitWords(himalayaH4);
+        gsap.from(words, {
+            yPercent: 110,
+            opacity: 0,
+            duration: 1.1,
+            ease: E,
+            stagger: 0.016,
+            scrollTrigger: {
+                trigger: himalayaH4,
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+    }
+
+    // ── 2. "explore the craft" button — delayed fade-up ──────────────────────
+    const btn = document.querySelector('.himalaya .btn');
+    if (btn) {
+        gsap.from(btn, {
+            yPercent: 60,
+            opacity: 0,
+            duration: 1.0,
+            ease: E,
+            scrollTrigger: {
+                trigger: btn,
+                start: 'top 90%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+    }
+
+    // ── 3. "What is Pashmina?" headline — dramatic right-to-left stagger ─────
+    // from:'end' means the last word reveals first, pulling the reader's eye
+    // from the right edge inward — perfectly matching the right-alignment
+    const headlineH2 = document.querySelector('.pashminawrap h2');
+    if (headlineH2) {
+        const words = splitWords(headlineH2);
+        gsap.from(words, {
+            yPercent: 110,
+            duration: 1.6,
+            ease: E,
+            stagger: { each: 0.10, from: 'end' },
+            scrollTrigger: {
+                trigger: headlineH2,
+                start: 'top 75%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+    }
+
+    // ── 4. Second content paragraphs — staggered, offset by column ───────────
+    Array.from(document.querySelectorAll('.secondcont h4')).forEach((el, i) => {
+        const words = splitWords(el);
+        gsap.from(words, {
+            yPercent: 110,
+            opacity: 0,
+            duration: 1.0,
+            ease: E,
+            stagger: 0.013,
+            delay: i * 0.18,          // right column starts slightly later
+            scrollTrigger: {
+                trigger: el,
+                start: 'top 82%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+    });
+
+    // ── 5. Image row — cinematic scale-up reveal ─────────────────────────────
+    const imageRowImg = document.querySelector('.image-row img');
+    if (imageRowImg) {
+        gsap.from(imageRowImg, {
+            scale: 1.08,
+            opacity: 0,
+            duration: 1.8,
+            ease: E,
+            scrollTrigger: {
+                trigger: '.image-row',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+    }
+
+    // ── 6. Third section image — slide in from the left ──────────────────────
+    const thirdImg = document.querySelector('.third-section img');
+    if (thirdImg) {
+        gsap.from(thirdImg, {
+            x: -120,
+            opacity: 0,
+            duration: 1.8,
+            ease: E,
+            scrollTrigger: {
+                trigger: '.third-section',
+                start: 'top 90%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+    }
+
+    // ── 7. Third section massive headline — SCRUBBED word reveal ─────────────
+    // Words emerge one-by-one physically tied to the scroll position.
+    // This turns the 140px right-aligned text into a "reading machine".
+    const thirdH2 = document.querySelector('.third-section h2');
+    if (thirdH2) {
+        const words = splitWords(thirdH2);
+        gsap.from(words, {
+            yPercent: 110,
+            opacity: 0,
+            stagger: 0.06,
+            scrollTrigger: {
+                trigger: '.third-section',
+                start: 'top 80%',
+                end: 'bottom 30%',
+                scrub: 1.5          // smooth scrub — words lock to your thumb/wheel
+            }
+        });
+    }
 
 })();

@@ -532,3 +532,27 @@ body {
     filter: blur(16px);
     z-index: 1;
 } */
+
+/* ─── Text Reveal Masks (Impeccable) ──────────────────────────────────────── */
+/* Each word is wrapped: .tw-mask clips the .tw-inner that slides up */
+.tw-mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    /* Inherit the parent's line-height so the clip boundary is tight */
+    line-height: inherit;
+}
+
+.tw-inner {
+    display: inline-block;
+    will-change: transform, opacity;
+    /* GSAP sets the initial translateY via JS */
+}
+
+/* Honour reduced-motion: bypass the transform so content is visible */
+@media (prefers-reduced-motion: reduce) {
+    .tw-inner {
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
