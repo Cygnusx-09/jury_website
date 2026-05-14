@@ -113,6 +113,33 @@ body {
     height: auto;
 }
 
+@media (max-width: 768px) {
+    #main-nav {
+        padding: 15px 20px;
+    }
+
+    .logo-img {
+        width: 60px;
+        margin-bottom: -16px;
+    }
+
+    .logo-text {
+        display: none;
+    }
+
+    .nav-right {
+        gap: 16px;
+    }
+
+    .nav-item span {
+        display: none;
+    }
+
+    .nav-icon {
+        width: 16px;
+    }
+}
+
 /* ===== Hero ===== */
 #hero {
     position: relative;
@@ -133,7 +160,8 @@ body {
     opacity: 0;
     pointer-events: auto;
     /* Always allow interaction so Matter.js can catch drags */
-    touch-action: pan-y; /* Allow vertical scrolling on touch */
+    touch-action: pan-y;
+    /* Allow vertical scrolling on touch */
 }
 
 /* ===== Shawls Label ===== */
@@ -161,7 +189,8 @@ body {
     color: #ff6277;
     line-height: 1;
     user-select: none;
-    pointer-events: none; /* Let events pass through to the physics canvas */
+    pointer-events: none;
+    /* Let events pass through to the physics canvas */
     z-index: 6;
     /* Size is set by JS based on viewport */
     will-change: transform;
@@ -334,7 +363,8 @@ body {
 .third-section {
     position: relative;
     background-color: #FFF3EF;
-    padding: 120px 0 120px 80px; /* Removed right padding */
+    padding: 120px 0 120px 80px;
+    /* Removed right padding */
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -381,7 +411,8 @@ body {
     width: 100%;
     overflow: hidden;
     margin-top: 100px;
-    height: 250px; /* Improved height */
+    height: 250px;
+    /* Improved height */
 }
 
 .marquee-track {

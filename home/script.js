@@ -63,9 +63,9 @@
         const letterEls = Array.from(document.querySelectorAll('.letter-body'));
         const physBodies = [];
 
-        // Pashmina (8 letters) @ 300px, Shawls (6 letters) @ 200px
-        const PASHMINA_SIZE = 300;
-        const SHAWLS_SIZE = 200;
+        // Pashmina (8 letters), Shawls (6 letters) - now responsive using clamp
+        const PASHMINA_SIZE = 'clamp(100px, 15vw, 350px)';
+        const SHAWLS_SIZE = 'clamp(40px, 12vw, 250px)';
 
         const pashminaEls = letterEls.slice(0, 8);
         const shawlsEls = letterEls.slice(8);
@@ -73,7 +73,7 @@
         function processRow(elements, fontSize, rowYOffset) {
             let rowWidth = 0;
             const data = elements.map(el => {
-                el.style.fontSize = fontSize + 'px';
+                el.style.fontSize = fontSize;
                 el.style.position = 'absolute';
                 el.style.lineHeight = '1';
                 el.style.display = 'flex';
@@ -110,8 +110,9 @@
 
         // Process Shawls (Top Row) first
         processRow(shawlsEls, SHAWLS_SIZE, 0);
-        // Process Pashmina (Bottom Row) with a vertical offset
-        processRow(pashminaEls, PASHMINA_SIZE, 350);
+        // Process Pashmina (Bottom Row) with a vertical offset based on screen size
+        const pashOffset = window.innerWidth < 768 ? 120 : 350;
+        processRow(pashminaEls, PASHMINA_SIZE, pashOffset);
 
         // ── 5. Stickers ──────────────────────────────────────────────────
 

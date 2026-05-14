@@ -244,6 +244,7 @@ body {
     outline: none;
     transition: transform 0.4s var(--ease-out);
     opacity: 0;
+    width: 100%;
 }
 
 /* Cards fly in from alternating sides with 3-D tilt */
@@ -275,8 +276,8 @@ body {
 /* ===== Product Image ===== */
 .product-img-wrap {
     flex-shrink: 0;
-    width: 211px;
-    height: 158px;
+    width: 349px;
+    height: 263px;
     background-color: #000C38;
     border-radius: 4px;
     overflow: hidden;
@@ -335,7 +336,7 @@ body {
 
 .product-name {
     font-family: 'MD Nichrome', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     color: #000000;
     line-height: 1.4;
@@ -344,7 +345,7 @@ body {
 
 .product-origin {
     font-family: 'MD Nichrome', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     color: #909090;
     line-height: 1.4;
