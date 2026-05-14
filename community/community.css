@@ -106,7 +106,8 @@ body {
     width: 100%;
 }
 
-.artisan-name, .artisan-place {
+.artisan-name,
+.artisan-place {
     font-family: 'MD Nichrome', sans-serif;
     font-size: clamp(1.5rem, 4vw, 50px);
     font-weight: 300;
@@ -137,7 +138,9 @@ body {
         flex-direction: column;
         gap: 1rem;
     }
-    .artisan-name, .artisan-place {
+
+    .artisan-name,
+    .artisan-place {
         text-align: center;
     }
 }
@@ -264,4 +267,80 @@ body {
     height: 100%;
     object-fit: contain;
     mix-blend-mode: difference;
+}
+
+/* Comprehensive Responsive Adjustments */
+@media (max-width: 768px) {
+    .community-page {
+        padding: 2rem 1.5rem;
+        gap: 4rem;
+    }
+
+    .hero-section {
+        margin-top: 15vh;
+        gap: 1.5rem;
+    }
+
+    .hero-subtitle {
+        align-self: flex-start;
+    }
+
+    .artisan-portraits {
+        gap: 80px;
+    }
+
+    .artisan-roles {
+        gap: 3rem;
+        margin-top: 2rem;
+    }
+
+    .role-row-1, .role-row-2 {
+        gap: 2rem;
+    }
+
+    .role-card {
+        flex: 1 1 100%;
+    }
+
+    .role-card p {
+        font-size: 20px;
+        line-height: 1.5;
+    }
+
+    .who-makes-section, .what-we-do-section {
+        gap: 4rem;
+        margin-top: 4rem;
+    }
+
+    .initiatives-list {
+        gap: 30px;
+    }
+
+    .cta-section {
+        padding: 4rem 0 2rem 0;
+    }
+
+    .cta-bottom {
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .cta-title {
+        align-self: center;
+        text-align: center;
+    }
+
+    .contact-container {
+        align-items: center;
+    }
+
+    .contact-details p {
+        font-size: 20px;
+    }
+
+    .cta-decorative {
+        max-width: 100%;
+    }
 }
