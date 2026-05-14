@@ -34,15 +34,18 @@ body {
     flex-direction: column;
     gap: 2rem;
     padding-top: 5rem;
+    margin-top: 25vh;
 }
+
 .hero-subtitle {
     font-family: 'MD Nichrome', sans-serif;
     font-weight: 700;
     font-size: clamp(1.5rem, 3vw, 50px);
     align-self: flex-end;
-    max-width: 800px;
+    max-width: 500px;
     text-align: left;
 }
+
 .hero-title {
     font-family: 'MD Nichrome', sans-serif;
     font-size: clamp(3rem, 6vw, 114px);
@@ -61,6 +64,7 @@ body {
     align-items: center;
     margin-top: 4rem;
 }
+
 .landscape-img {
     width: 100%;
     max-width: 914px;
@@ -77,6 +81,7 @@ body {
     gap: 6rem;
     margin-top: 8rem;
 }
+
 .section-title {
     font-family: 'MD Nichrome', sans-serif;
     font-size: clamp(3rem, 6vw, 114px);
@@ -90,13 +95,51 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 180px;
+    width: 100%;
 }
+
+.portrait-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    width: 100%;
+}
+
+.artisan-name, .artisan-place {
+    font-family: 'MD Nichrome', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 50px);
+    font-weight: 300;
+    color: var(--primary-color);
+    white-space: nowrap;
+    flex: 1;
+}
+
+.artisan-name {
+    text-align: right;
+}
+
+.artisan-place {
+    text-align: left;
+}
+
 .portrait-img {
+    flex: 0 0 auto;
     width: 100%;
     max-width: 550px;
     height: auto;
     object-fit: cover;
     border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .portrait-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .artisan-name, .artisan-place {
+        text-align: center;
+    }
 }
 
 .artisan-roles {
@@ -107,28 +150,33 @@ body {
     max-width: 1600px;
     margin-top: 4rem;
 }
+
 .role-row-1 {
     display: flex;
     justify-content: center;
     gap: 100px;
     flex-wrap: wrap;
 }
+
 .role-row-2 {
     display: flex;
     justify-content: flex-start;
     gap: 100px;
     flex-wrap: wrap;
 }
+
 .role-card {
     flex: 1 1 300px;
     max-width: 473px;
 }
+
 .role-card p {
     font-size: 32px;
     line-height: 40px;
     font-weight: 300;
     margin: 0;
 }
+
 .role-card p strong {
     font-weight: 700;
 }
@@ -138,20 +186,23 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 4rem;
+    gap: 8rem;
     margin-top: 6rem;
 }
+
 .what-we-do-title {
     font-family: 'MD Nichrome', sans-serif;
     font-size: clamp(3rem, 6vw, 114px);
     font-weight: 300;
     margin: 0;
 }
+
 .initiatives-list {
     display: flex;
     flex-direction: column;
     gap: 70px;
 }
+
 .initiative {
     font-family: 'MD Nichrome', sans-serif;
     font-size: clamp(1.5rem, 4vw, 50px);
@@ -167,6 +218,7 @@ body {
     padding: 8rem 0 4rem 0;
     gap: 2rem;
 }
+
 .cta-title {
     font-family: 'MD Nichrome', sans-serif;
     font-size: clamp(3rem, 6vw, 114px);
@@ -177,6 +229,7 @@ body {
     margin: 0;
     text-align: left;
 }
+
 .cta-bottom {
     display: flex;
     justify-content: space-between;
@@ -184,26 +237,31 @@ body {
     width: 100%;
     margin-top: 2rem;
 }
+
 .contact-container {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
+
 .contact-us {
     font-family: 'MD Nichrome', sans-serif;
     font-size: clamp(3rem, 6vw, 114px);
     font-weight: 300;
     line-height: 1;
 }
+
 .contact-details p {
     font-size: 32px;
     font-weight: 300;
     margin: 0;
     color: var(--primary-color);
 }
+
 .cta-decorative {
     width: 100%;
     max-width: 617px;
-    height: auto;
+    height: 100%;
     object-fit: contain;
+    mix-blend-mode: difference;
 }
